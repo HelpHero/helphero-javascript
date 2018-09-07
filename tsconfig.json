@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "downlevelIteration": true,
+    "inlineSources": true,
+    "lib": ["es6", "dom"],
+    "module": "ES2015",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5"
+  },
+  "include": ["src/**/*"]
+}

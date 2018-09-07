@@ -1,0 +1,32 @@
+{
+  "name": "helphero",
+  "version": "0.1.0",
+  "description": "Offical HelpHero SDK for browsers",
+  "repository": "git://github.com/HelpHero/helphero-javascript.git",
+  "homepage": "https://github.com/HelpHero/helphero-javascript",
+  "author": "HelpHero",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=6"
+  },
+  "main": "dist/helphero.js",
+  "umd:main": "dist/helphero.umd.js",
+  "module": "dist/helphero.mjs",
+  "types": "dist/helphero.d.ts",
+  "scripts": {
+    "build": "microbundle --entry src/helphero.ts",
+    "prettier-fix": "prettier --write 'src/**/*.ts'",
+    "prettier-check": "prettier-check 'src/**/*.ts'",
+    "dev": "yarn build watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "microbundle": "git://github.com/developit/microbundle.git#3d4d09f",
+    "prettier": "^1.14.2",
+    "prettier-check": "^2.0.0",
+    "typescript": "^3.0.3"
+  }
+}

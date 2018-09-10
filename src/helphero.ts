@@ -29,7 +29,7 @@ type EventInfo = {
   step?: Step;
 };
 
-type External = {
+type HelpHero = {
   startTour: (id: string, options?: { skipIfAlreadySeen: boolean }) => void;
   advanceTour: () => void;
   cancelTour: () => void;
@@ -42,7 +42,7 @@ type External = {
 };
 
 let initializedAppId: string;
-let instance: External;
+let instance: HelpHero;
 
 const methods = [
   "startTour",
@@ -61,7 +61,7 @@ interface AsyncHelpHero {
   q?: unknown[];
 }
 
-export function init(appId: string): External {
+export default function initHelpHero(appId: string): HelpHero {
   if (typeof appId !== "string" || appId === "") {
     throw new Error(`Expected HelpHero App ID recieved: ${appId}`);
   }

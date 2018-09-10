@@ -1,6 +1,6 @@
 {
   "name": "helphero",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Offical HelpHero SDK for browsers",
   "repository": "git://github.com/HelpHero/helphero-javascript.git",
   "homepage": "https://github.com/HelpHero/helphero-javascript",
@@ -17,7 +17,8 @@
     "build": "microbundle --entry src/helphero.ts",
     "prettier-fix": "prettier --write 'src/**/*.ts'",
     "prettier-check": "prettier-check 'src/**/*.ts'",
-    "dev": "yarn build watch"
+    "dev": "yarn build watch",
+    "prepublish": "yarn prettier-check && yarn build"
   },
   "files": [
     "dist"

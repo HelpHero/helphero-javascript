@@ -4,3 +4,4 @@ yarn-error.log*
 .rts2_cache*
 node_modules/
 dist/
+.DS_Store

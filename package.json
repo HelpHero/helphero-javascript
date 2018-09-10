@@ -1,6 +1,6 @@
 {
   "name": "helphero",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Offical HelpHero SDK for browsers",
   "repository": "git://github.com/HelpHero/helphero-javascript.git",
   "homepage": "https://github.com/HelpHero/helphero-javascript",
@@ -10,24 +10,26 @@
     "node": ">=6"
   },
   "main": "dist/helphero.js",
-  "umd:main": "dist/helphero.umd.js",
-  "module": "dist/helphero.mjs",
   "types": "dist/helphero.d.ts",
   "scripts": {
-    "build": "microbundle --entry src/helphero.ts",
+    "clean": "del .rpt2_cache dist",
+    "build": "rollup -c",
+    "flowgen": "flowgen dist/helphero.d.ts -o dist/helphero.flow.js",
     "prettier-fix": "prettier --write 'src/**/*.ts'",
     "prettier-check": "prettier-check 'src/**/*.ts'",
-    "dev": "yarn build watch",
-    "prepare": "yarn prettier-check && yarn build"
+    "prepare": "yarn prettier-check && yarn clean && yarn build && yarn flowgen"
   },
   "files": [
     "dist"
   ],
   "dependencies": {},
   "devDependencies": {
-    "microbundle": "git://github.com/developit/microbundle.git#3d4d09f",
+    "del-cli": "^1.1.0",
+    "flowgen": "^1.2.3",
     "prettier": "^1.14.2",
     "prettier-check": "^2.0.0",
+    "rollup": "^0.65.2",
+    "rollup-plugin-typescript2": "^0.17.0",
     "typescript": "^3.0.3"
   }
 }

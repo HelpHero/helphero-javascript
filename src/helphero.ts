@@ -63,7 +63,7 @@ interface AsyncHelpHero {
 
 export default function initHelpHero(appId: string): HelpHero {
   if (typeof appId !== "string" || appId === "") {
-    throw new Error(`Expected HelpHero App ID recieved: ${appId}`);
+    throw new Error(`Invalid HelpHero App ID: ${appId}`);
   }
   if (initializedAppId != null && initializedAppId !== appId) {
     throw new Error(

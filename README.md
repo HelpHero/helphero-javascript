@@ -15,6 +15,6 @@ To checkout the [Javascript docs](https://helphero.co/docs/javascript/) for full
 ```javascript
 import initHelpHero from 'helphero';
 
-const helphero = initHelpHero('<YOUR_HELPHERO_APP_ID>')
-helphero.anonymous()
+const helphero = initHelpHero('<YOUR_HELPHERO_APP_ID>');
+helphero.anonymous();
 ```

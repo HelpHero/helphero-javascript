@@ -18,3 +18,5 @@ import initHelpHero from 'helphero';
 const helphero = initHelpHero('<YOUR_HELPHERO_APP_ID>');
 helphero.anonymous();
 ```
+
+The npm package comes bundled with definitions for both TypeScript and Flow.

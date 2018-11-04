@@ -61,6 +61,10 @@ interface AsyncHelpHero {
   q?: unknown[];
 }
 
+interface _Window {
+  HelpHero: AsyncHelpHero;
+}
+
 export default function initHelpHero(appId: string): HelpHero {
   if (typeof appId !== "string" || appId === "") {
     throw new Error(`Invalid HelpHero App ID: ${appId}`);
@@ -74,16 +78,14 @@ export default function initHelpHero(appId: string): HelpHero {
     return instance;
   }
 
-  // @ts-ignore
-  const _window = window as { HelpHero: AsyncHelpHero };
-
   // create temporary buffer
   const queue: unknown[] = [];
   const buffer: AsyncHelpHero = function() {
     queue.push(arguments);
   };
   buffer.q = queue;
-  _window.HelpHero = buffer;
+  // @ts-ignore
+  (window as _Window).HelpHero = buffer;
 
   // add script to page
   var script = document.createElement("script");
@@ -96,7 +98,8 @@ export default function initHelpHero(appId: string): HelpHero {
   instance = Object.create(null);
   methods.forEach(method => {
     (instance as any)[method] = (...args: unknown[]) =>
-      _window.HelpHero.apply(null, [method as unknown].concat(args));
+      // @ts-ignore
+      (window as _Window).HelpHero.apply(null, [method].concat(args));
   });
   return instance;
 }

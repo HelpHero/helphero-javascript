@@ -29,11 +29,16 @@ type EventInfo = {
   step?: Step;
 };
 
+type Data = {
+  [key: string]: boolean | number | string | undefined | null;
+};
+
 type HelpHero = {
   startTour: (id: string, options?: { skipIfAlreadySeen: boolean }) => void;
   advanceTour: () => void;
   cancelTour: () => void;
-  identify: (id: string | number, data?: Object) => void;
+  identify: (id: string | number, data?: Data) => void;
+  update: (data: Data | ((data: Data) => Data | null | undefined)) => void;
   anonymous: () => void;
   on: (kind: EventKind, fn: (ev: Event, info: EventInfo) => void) => void;
   off: (kind: EventKind, fn: (ev: Event, info: EventInfo) => void) => void;
@@ -41,8 +46,14 @@ type HelpHero = {
   closeLauncher: () => void;
 };
 
-let initializedAppId: string;
-let instance: HelpHero;
+interface AsyncHelpHero {
+  (method: string, ...args: unknown[]): void;
+  q?: unknown[];
+}
+
+type _Window = Window & {
+  HelpHero: AsyncHelpHero;
+};
 
 const methods = [
   "startTour",
@@ -50,20 +61,15 @@ const methods = [
   "cancelTour",
   "identify",
   "anonymous",
+  "update",
   "on",
   "off",
   "openLauncher",
   "closeLauncher"
 ];
 
-interface AsyncHelpHero {
-  (method: string, ...args: unknown[]): void;
-  q?: unknown[];
-}
-
-interface _Window {
-  HelpHero: AsyncHelpHero;
-}
+let initializedAppId: string;
+let instance: HelpHero & AsyncHelpHero & { [method: string]: Function };
 
 export default function initHelpHero(appId: string): HelpHero {
   if (typeof appId !== "string" || appId === "") {
@@ -84,7 +90,6 @@ export default function initHelpHero(appId: string): HelpHero {
     queue.push(arguments);
   };
   buffer.q = queue;
-  // @ts-ignore
   (window as _Window).HelpHero = buffer;
 
   // add script to page
@@ -97,8 +102,7 @@ export default function initHelpHero(appId: string): HelpHero {
   initializedAppId = appId;
   instance = Object.create(null);
   methods.forEach(method => {
-    (instance as any)[method] = (...args: unknown[]) =>
-      // @ts-ignore
+    instance[method] = (...args: any[]) =>
       (window as _Window).HelpHero.apply(null, [method].concat(args));
   });
   return instance;

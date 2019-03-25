@@ -84,17 +84,18 @@ export default function initHelpHero(appId: string): HelpHero {
     return instance;
   }
 
-  // create temporary buffer
-  const queue: unknown[] = [];
-  const buffer: AsyncHelpHero = function() {
-    queue.push(arguments);
+  // create temporary tasks
+  const tasks: unknown[] = [];
+  const queue: AsyncHelpHero = function() {
+    tasks.push(arguments);
   };
-  buffer.q = queue;
-  (window as _Window).HelpHero = buffer;
+  queue.q = tasks;
+  (window as _Window).HelpHero = queue;
 
   // add script to page
-  var script = document.createElement("script");
-  script.src = `//app.helphero.co/embed/${appId}`;
+  const script = document.createElement("script");
+  const hasHttp = /^https?:$/.test(document.location.protocol || '')
+  script.src = `${hasHttp ? '' : 'https:'}//app.helphero.co/embed/${appId}`;
   script.async = true;
   document.body.appendChild(script);
 
@@ -103,6 +104,7 @@ export default function initHelpHero(appId: string): HelpHero {
   instance = Object.create(null);
   methods.forEach(method => {
     instance[method] = (...args: any[]) =>
+      // @ts-ignore
       (window as _Window).HelpHero.apply(null, [method].concat(args));
   });
   return instance;

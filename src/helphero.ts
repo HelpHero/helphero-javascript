@@ -94,8 +94,8 @@ export default function initHelpHero(appId: string): HelpHero {
 
   // add script to page
   const script = document.createElement("script");
-  const hasHttp = /^https?:$/.test(document.location.protocol || '')
-  script.src = `${hasHttp ? '' : 'https:'}//app.helphero.co/embed/${appId}`;
+  const hasHttp = /^https?:$/.test(document.location.protocol || "");
+  script.src = `${hasHttp ? "" : "https:"}//app.helphero.co/embed/${appId}`;
   script.async = true;
   document.body.appendChild(script);
 

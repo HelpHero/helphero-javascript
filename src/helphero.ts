@@ -104,7 +104,6 @@ export default function initHelpHero(appId: string): HelpHero {
   instance = Object.create(null);
   methods.forEach(method => {
     instance[method] = (...args: any[]) =>
-      // @ts-ignore
       (window as _Window).HelpHero.apply(null, [method].concat(args));
   });
   return instance;

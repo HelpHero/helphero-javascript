@@ -71,7 +71,10 @@ const methods = [
 let initializedAppId: string;
 let instance: HelpHero & AsyncHelpHero & { [method: string]: Function };
 
-export default function initHelpHero(appId: string, embedPrefix: string): HelpHero {
+export default function initHelpHero(
+  appId: string,
+  embedPrefix: string
+): HelpHero {
   if (typeof appId !== "string" || appId === "") {
     throw new Error(`Invalid HelpHero App ID: ${appId}`);
   }
@@ -102,8 +105,11 @@ export default function initHelpHero(appId: string, embedPrefix: string): HelpHe
   initializedAppId = appId;
   instance = Object.create(null);
   methods.forEach(method => {
-    instance[method] = (...args: any[]) =>
-      (window as _Window).HelpHero.apply(null, [method].concat(args));
+    // @ts-ignore
+    instance[method] = (...args: any[]) => {
+      // @ts-ignore
+      return (window as _Window).HelpHero.apply(null, [method].concat(args));
+    };
   });
   return instance;
 }

@@ -17,7 +17,7 @@
     "flowgen": "flowgen dist/helphero.d.ts -o dist/helphero.flow.js",
     "prettier-fix": "prettier --write 'src/**/*.ts'",
     "prettier-check": "prettier-check 'src/**/*.ts'",
-    "prepare": "echo \"test >>>>>>>>>>>>>>>\" && yarn build"
+    "prepare": "yarn prettier-check && yarn clean && yarn build && yarn flowgen"
   },
   "files": [
     "dist"

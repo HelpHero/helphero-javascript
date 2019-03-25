@@ -71,7 +71,7 @@ const methods = [
 let initializedAppId: string;
 let instance: HelpHero & AsyncHelpHero & { [method: string]: Function };
 
-export default function initHelpHero(appId: string): HelpHero {
+export default function initHelpHero(appId: string, embedPrefix: ''): HelpHero {
   if (typeof appId !== "string" || appId === "") {
     throw new Error(`Invalid HelpHero App ID: ${appId}`);
   }
@@ -94,7 +94,7 @@ export default function initHelpHero(appId: string): HelpHero {
 
   // add script to page
   var script = document.createElement("script");
-  script.src = `//app.helphero.co/embed/${appId}`;
+  script.src = `${embedPrefix}//app.helphero.co/embed/${appId}`;
   script.async = true;
   document.body.appendChild(script);
 

@@ -108,3 +108,5 @@ export default function initHelpHero(appId: string): HelpHero {
   });
   return instance;
 }
+
+export { Data, Event, EventInfo, EventKind, HelpHero, Step, Tour };

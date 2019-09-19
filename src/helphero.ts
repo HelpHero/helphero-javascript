@@ -42,18 +42,20 @@ type HelpHero = {
   anonymous: () => void;
   on: (kind: EventKind, fn: (ev: Event, info: EventInfo) => void) => void;
   off: (kind: EventKind, fn: (ev: Event, info: EventInfo) => void) => void;
-  openLauncher: () => void;
-  closeLauncher: () => void;
+  openChecklist: () => void;
+  closeChecklist: () => void;
+  startChecklist: (id: string) => void;
 };
 
 interface AsyncHelpHero {
-  (method: string, ...args: unknown[]): void;
+  (...args: any[]): void;
   q?: unknown[];
 }
 
-type _Window = Window & {
-  HelpHero: AsyncHelpHero;
-};
+type _Window = Window &
+  typeof globalThis & {
+    HelpHero: AsyncHelpHero;
+  };
 
 const methods = [
   "startTour",
@@ -64,8 +66,9 @@ const methods = [
   "update",
   "on",
   "off",
-  "openLauncher",
-  "closeLauncher"
+  "openChecklist",
+  "closeChecklist",
+  "startChecklist"
 ];
 
 let initializedAppId: string;

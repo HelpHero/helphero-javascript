@@ -1,6 +1,6 @@
 {
   "name": "helphero",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Offical HelpHero SDK for browsers",
   "repository": "git://github.com/HelpHero/helphero-javascript.git",
   "homepage": "https://github.com/HelpHero/helphero-javascript",
@@ -15,7 +15,7 @@
     "clean": "del .rpt2_cache dist",
     "build": "rollup -c",
     "tsc": "tsc --noEmit",
-    "flowgen": "flowgen dist/helphero.d.ts -o dist/helphero.flow.js",
+    "flowgen": "flowgen dist/helphero.d.ts -o dist/helphero.flow.js --no-inexact",
     "prettier-fix": "prettier --write 'src/**/*.ts'",
     "prettier-check": "prettier-check 'src/**/*.ts'",
     "prepare": "yarn tsc && yarn prettier-check && yarn clean && yarn build && yarn flowgen"
@@ -25,12 +25,12 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "del-cli": "^1.1.0",
-    "flowgen": "^1.2.3",
-    "prettier": "^1.14.2",
+    "del-cli": "^3.0.0",
+    "flowgen": "^1.10.0",
+    "prettier": "^1.18.2",
     "prettier-check": "^2.0.0",
-    "rollup": "^0.65.2",
-    "rollup-plugin-typescript2": "^0.17.0",
-    "typescript": "^3.0.3"
+    "rollup": "^1.21.4",
+    "rollup-plugin-typescript2": "^0.24.2",
+    "typescript": "^3.6.3"
   }
 }

@@ -4,7 +4,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "declaration": true,
-    "downlevelIteration": true,
+    "downlevelIteration": false,
     "inlineSources": true,
     "lib": ["es6", "dom"],
     "module": "ES2015",

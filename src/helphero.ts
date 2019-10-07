@@ -1,4 +1,4 @@
-type EventKind =
+type TourEventKind =
   | "tour_started"
   | "tour_completed"
   | "tour_advanced"
@@ -6,8 +6,8 @@ type EventKind =
   | "tour_interrupted"
   | "error";
 
-type Event = {
-  kind: EventKind;
+type TourEvent = {
+  kind: TourEventKind;
   details?: string;
   tourId?: string;
   stepId?: string;
@@ -24,9 +24,33 @@ type Tour = {
   steps: Step[];
 };
 
-type EventInfo = {
+type TourEventInfo = {
   tour?: Tour;
   step?: Step;
+};
+
+type ChecklistEventKind = "checklist_completed" | "checklist_item_completed";
+
+type ChecklistEvent = {
+  kind: ChecklistEventKind;
+  checklistId: string;
+  itemId?: string;
+};
+
+type ChecklistItem = {
+  id: string;
+  name: string;
+};
+
+type Checklist = {
+  id: string;
+  name: string;
+  items: ChecklistItem[];
+};
+
+type ChecklistEventInfo = {
+  checklist: Checklist;
+  item?: ChecklistItem;
 };
 
 type Data = {
@@ -40,8 +64,22 @@ type HelpHero = {
   identify: (id: string | number, data?: Data) => void;
   update: (data: Data | ((data: Data) => Data | null | undefined)) => void;
   anonymous: () => void;
-  on: (kind: EventKind, fn: (ev: Event, info: EventInfo) => void) => void;
-  off: (kind: EventKind, fn: (ev: Event, info: EventInfo) => void) => void;
+  on(
+    kind: TourEventKind,
+    fn: (ev: TourEvent, info: TourEventInfo) => void
+  ): void;
+  off(
+    kind: TourEventKind,
+    fn: (ev: TourEvent, info: TourEventInfo) => void
+  ): void;
+  on(
+    kind: ChecklistEventKind,
+    fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void
+  ): void;
+  off(
+    kind: ChecklistEventKind,
+    fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void
+  ): void;
   openChecklist: () => void;
   closeChecklist: () => void;
   startChecklist: (id: string) => void;

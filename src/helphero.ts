@@ -83,6 +83,8 @@ type HelpHero = {
   openChecklist: () => void;
   closeChecklist: () => void;
   startChecklist: (id: string) => void;
+  showBeacon: () => void;
+  hideBeacon: () => void;
 };
 
 interface AsyncHelpHero {
@@ -106,7 +108,9 @@ const methods = [
   "off",
   "openChecklist",
   "closeChecklist",
-  "startChecklist"
+  "startChecklist",
+  "showBeacon",
+  "hideBeacon"
 ];
 
 let initializedAppId: string;

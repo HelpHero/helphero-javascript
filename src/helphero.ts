@@ -116,7 +116,7 @@ const methods = [
 let initializedAppId: string;
 let instance: HelpHero & AsyncHelpHero & { [method: string]: Function };
 
-export default function initHelpHero(appId: string): HelpHero {
+function init(appId: string): HelpHero {
   if (typeof appId !== "string" || appId === "") {
     throw new Error(`Invalid HelpHero App ID: ${appId}`);
   }
@@ -153,3 +153,7 @@ export default function initHelpHero(appId: string): HelpHero {
   });
   return instance;
 }
+
+// @ts-ignore
+init["default"] = init;
+export default init;

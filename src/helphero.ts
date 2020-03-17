@@ -95,7 +95,7 @@ type _Window = Window &
     HelpHero: AsyncHelpHero;
   };
 
-const methods = [
+const methods: (keyof HelpHero)[] = [
   "startTour",
   "advanceTour",
   "cancelTour",
@@ -107,7 +107,7 @@ const methods = [
   "openChecklist",
   "closeChecklist",
   "startChecklist",
-  "setOptions",
+  "setOptions"
 ];
 
 let initializedAppId: string;

@@ -21,7 +21,6 @@ type Step = {
 type Tour = {
   id: string;
   name: string;
-  steps: Step[];
 };
 
 type TourEventInfo = {
@@ -83,8 +82,7 @@ type HelpHero = {
   openChecklist: () => void;
   closeChecklist: () => void;
   startChecklist: (id: string) => void;
-  showBeacon: () => void;
-  hideBeacon: () => void;
+  setOptions: (options: { showBeacon?: boolean }) => void;
 };
 
 interface AsyncHelpHero {
@@ -109,8 +107,7 @@ const methods = [
   "openChecklist",
   "closeChecklist",
   "startChecklist",
-  "showBeacon",
-  "hideBeacon"
+  "setOptions",
 ];
 
 let initializedAppId: string;

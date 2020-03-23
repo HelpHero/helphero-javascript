@@ -107,7 +107,13 @@ const methods: (keyof HelpHero)[] = [
   "openChecklist",
   "closeChecklist",
   "startChecklist",
-  "setOptions"
+  "setOptions",
+
+  // deprecated
+  // @ts-ignore
+  "showBeacon",
+  // @ts-ignore
+  "hideBeacon"
 ];
 
 let initializedAppId: string;

@@ -56,9 +56,19 @@ type Data = {
   [key: string]: boolean | number | string | undefined | null;
 };
 
+type StartOptions = {
+  skipIfAlreadySeen?: boolean;
+  redirectIfNeeded?: boolean;
+  stepId?: string;
+};
+
+type AdvanceOptions = {
+  stepId?: string;
+};
+
 type HelpHero = {
-  startTour: (id: string, options?: { skipIfAlreadySeen: boolean }) => void;
-  advanceTour: () => void;
+  startTour: (id: string, options?: StartOptions) => void;
+  advanceTour: (options?: AdvanceOptions) => void;
   cancelTour: () => void;
   identify: (id: string | number, data?: Data) => void;
   update: (data: Data | ((data: Data) => Data | null | undefined)) => void;

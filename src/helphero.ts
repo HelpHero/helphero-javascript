@@ -102,7 +102,7 @@ interface AsyncHelpHero {
 
 type _Window = Window &
   typeof globalThis & {
-    HelpHero: AsyncHelpHero;
+    HelpHero: HelpHero & AsyncHelpHero;
   };
 
 const methods: (keyof HelpHero)[] = [
@@ -127,7 +127,6 @@ const methods: (keyof HelpHero)[] = [
 ];
 
 let initializedAppId: string;
-let instance: HelpHero & AsyncHelpHero & { [method: string]: Function };
 
 function init(appId: string): HelpHero {
   if (typeof appId !== "string" || appId === "") {
@@ -138,31 +137,31 @@ function init(appId: string): HelpHero {
       `HelpHero does not support initializing multiple Apps on the same page. Trying to initialize with App ID "${initializedAppId}" which is different from previously used App ID "${appId}"`
     );
   }
-  if (instance != null) {
-    return instance;
+
+  const host = window as _Window;
+  if (host.HelpHero != null) {
+    return host.HelpHero;
   }
 
-  // create temporary tasks
   const tasks: unknown[] = [];
-  const queue: AsyncHelpHero = function() {
+  // @ts-ignore
+  const instance: AsyncHelpHero & HelpHero = function() {
     tasks.push(arguments);
   };
-  queue.q = tasks;
-  (window as _Window).HelpHero = queue;
+  host.HelpHero = instance;
+  instance.q = tasks;
+  methods.forEach(method => {
+    instance[method] = (...args: any[]) =>
+      host.HelpHero.apply(null, [method].concat(args));
+  });
 
   // add script to page
+  initializedAppId = appId;
   const script = document.createElement("script");
   script.src = `https://app.helphero.co/embed/${appId}`;
   script.async = true;
   document.body.appendChild(script);
 
-  // return API wrapper
-  initializedAppId = appId;
-  instance = Object.create(null);
-  methods.forEach(method => {
-    instance[method] = (...args: any[]) =>
-      (window as _Window).HelpHero.apply(null, [method].concat(args));
-  });
   return instance;
 }
 

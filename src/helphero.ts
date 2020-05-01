@@ -1,4 +1,4 @@
-export type TourEventKind =
+type TourEventKind =
   | "tour_started"
   | "tour_completed"
   | "tour_advanced"
@@ -28,7 +28,7 @@ export type TourEventInfo = {
   step?: Step;
 };
 
-export type ChecklistEventKind = "checklist_completed" | "checklist_item_completed";
+type ChecklistEventKind = "checklist_completed" | "checklist_item_completed";
 
 export type ChecklistEvent = {
   kind: ChecklistEventKind;
@@ -52,7 +52,7 @@ export type ChecklistEventInfo = {
   item?: ChecklistItem;
 };
 
-export type Data = {
+type Data = {
   [key: string]: boolean | number | string | undefined | null;
 };
 
@@ -95,17 +95,17 @@ export type HelpHero = {
   setOptions: (options: { showBeacon?: boolean }) => void;
 };
 
-export interface AsyncHelpHero {
+interface AsyncHelpHero {
   (...args: any[]): void;
   q?: unknown[];
 }
 
-export type _Window = Window &
+type _Window = Window &
   typeof globalThis & {
     HelpHero: HelpHero & AsyncHelpHero;
   };
 
-export const methods: (keyof HelpHero)[] = [
+const methods: (keyof HelpHero)[] = [
   "startTour",
   "advanceTour",
   "cancelTour",
@@ -134,7 +134,7 @@ function init(appId: string): HelpHero {
   }
   if (initializedAppId != null && initializedAppId !== appId) {
     throw new Error(
-      `HelpHero does not support initializing multiple Apps on the same page. Trying to initialize with App ID "${initializedAppId}" which is different from previously used App ID "${appId}"`
+      `HelpHero does not support initializing multiple Apps on the same page. Trying to initialize with App ID "${appId}" which is different from previously used App ID "${initializedAppId}"`
     );
   }
 

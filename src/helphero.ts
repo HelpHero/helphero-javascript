@@ -1,4 +1,4 @@
-type TourEventKind =
+export type TourEventKind =
   | "tour_started"
   | "tour_completed"
   | "tour_advanced"
@@ -6,67 +6,67 @@ type TourEventKind =
   | "tour_interrupted"
   | "error";
 
-type TourEvent = {
+export type TourEvent = {
   kind: TourEventKind;
   details?: string;
   tourId?: string;
   stepId?: string;
 };
 
-type Step = {
+export type Step = {
   id: string;
   name: string;
 };
 
-type Tour = {
+export type Tour = {
   id: string;
   name: string;
 };
 
-type TourEventInfo = {
+export type TourEventInfo = {
   tour?: Tour;
   step?: Step;
 };
 
-type ChecklistEventKind = "checklist_completed" | "checklist_item_completed";
+export type ChecklistEventKind = "checklist_completed" | "checklist_item_completed";
 
-type ChecklistEvent = {
+export type ChecklistEvent = {
   kind: ChecklistEventKind;
   checklistId: string;
   itemId?: string;
 };
 
-type ChecklistItem = {
+export type ChecklistItem = {
   id: string;
   name: string;
 };
 
-type Checklist = {
+export type Checklist = {
   id: string;
   name: string;
   items: ChecklistItem[];
 };
 
-type ChecklistEventInfo = {
+export type ChecklistEventInfo = {
   checklist: Checklist;
   item?: ChecklistItem;
 };
 
-type Data = {
+export type Data = {
   [key: string]: boolean | number | string | undefined | null;
 };
 
-type StartOptions = {
+export type StartOptions = {
   skipIfAlreadySeen?: boolean;
   redirectIfNeeded?: boolean;
   stepId?: string;
 };
 
-type AdvanceOptions = {
+export type AdvanceOptions = {
   stepId?: string;
 };
 
-type HelpHero = {
+export type HelpHero = {
   startTour: (id: string, options?: StartOptions) => void;
   advanceTour: (options?: AdvanceOptions) => void;
   cancelTour: () => void;
@@ -95,17 +95,17 @@ type HelpHero = {
   setOptions: (options: { showBeacon?: boolean }) => void;
 };
 
-interface AsyncHelpHero {
+export interface AsyncHelpHero {
   (...args: any[]): void;
   q?: unknown[];
 }
 
-type _Window = Window &
+export type _Window = Window &
   typeof globalThis & {
     HelpHero: HelpHero & AsyncHelpHero;
   };
 
-const methods: (keyof HelpHero)[] = [
+export const methods: (keyof HelpHero)[] = [
   "startTour",
   "advanceTour",
   "cancelTour",

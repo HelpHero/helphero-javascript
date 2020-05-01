@@ -6,48 +6,48 @@ type TourEventKind =
   | "tour_interrupted"
   | "error";
 
-type TourEvent = {
+export type TourEvent = {
   kind: TourEventKind;
   details?: string;
   tourId?: string;
   stepId?: string;
 };
 
-type Step = {
+export type Step = {
   id: string;
   name: string;
 };
 
-type Tour = {
+export type Tour = {
   id: string;
   name: string;
 };
 
-type TourEventInfo = {
+export type TourEventInfo = {
   tour?: Tour;
   step?: Step;
 };
 
 type ChecklistEventKind = "checklist_completed" | "checklist_item_completed";
 
-type ChecklistEvent = {
+export type ChecklistEvent = {
   kind: ChecklistEventKind;
   checklistId: string;
   itemId?: string;
 };
 
-type ChecklistItem = {
+export type ChecklistItem = {
   id: string;
   name: string;
 };
 
-type Checklist = {
+export type Checklist = {
   id: string;
   name: string;
   items: ChecklistItem[];
 };
 
-type ChecklistEventInfo = {
+export type ChecklistEventInfo = {
   checklist: Checklist;
   item?: ChecklistItem;
 };
@@ -56,17 +56,17 @@ type Data = {
   [key: string]: boolean | number | string | undefined | null;
 };
 
-type StartOptions = {
+export type StartOptions = {
   skipIfAlreadySeen?: boolean;
   redirectIfNeeded?: boolean;
   stepId?: string;
 };
 
-type AdvanceOptions = {
+export type AdvanceOptions = {
   stepId?: string;
 };
 
-type HelpHero = {
+export type HelpHero = {
   startTour: (id: string, options?: StartOptions) => void;
   advanceTour: (options?: AdvanceOptions) => void;
   cancelTour: () => void;
@@ -134,7 +134,7 @@ function init(appId: string): HelpHero {
   }
   if (initializedAppId != null && initializedAppId !== appId) {
     throw new Error(
-      `HelpHero does not support initializing multiple Apps on the same page. Trying to initialize with App ID "${initializedAppId}" which is different from previously used App ID "${appId}"`
+      `HelpHero does not support initializing multiple Apps on the same page. Trying to initialize with App ID "${appId}" which is different from previously used App ID "${initializedAppId}"`
     );
   }
 

@@ -66,6 +66,11 @@ export type AdvanceOptions = {
   stepId?: string;
 };
 
+export type Options = {
+  show?: boolean;
+  showBeacon?: boolean;
+};
+
 export type HelpHero = {
   startTour: (id: string, options?: StartOptions) => void;
   advanceTour: (options?: AdvanceOptions) => void;
@@ -92,7 +97,7 @@ export type HelpHero = {
   openChecklist: () => void;
   closeChecklist: () => void;
   startChecklist: (id: string) => void;
-  setOptions: (options: { showBeacon?: boolean }) => void;
+  setOptions: (options: Options) => void;
 };
 
 interface AsyncHelpHero {

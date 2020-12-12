@@ -63,7 +63,7 @@ export type StartOptions = {
 };
 
 export type AdvanceOptions = {
-  stepId?: string;
+  stepId?: string | number;
 };
 
 export type Options = {
@@ -79,16 +79,28 @@ export type HelpHero = {
   update: (data: Data | ((data: Data) => Data | null | undefined)) => void;
   anonymous: () => void;
   on(
-    kind: TourEventKind,
-    fn: (ev: TourEvent, info: TourEventInfo) => void
+    fn: (
+      ev: TourEvent | ChecklistEvent,
+      info: TourEventInfo | ChecklistEventInfo
+    ) => void
   ): void;
-  off(
+  on(
     kind: TourEventKind,
     fn: (ev: TourEvent, info: TourEventInfo) => void
   ): void;
   on(
     kind: ChecklistEventKind,
     fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void
+  ): void;
+  off(
+    fn: (
+      ev: TourEvent | ChecklistEvent,
+      info: TourEventInfo | ChecklistEventInfo
+    ) => void
+  ): void;
+  off(
+    kind: TourEventKind,
+    fn: (ev: TourEvent, info: TourEventInfo) => void
   ): void;
   off(
     kind: ChecklistEventKind,

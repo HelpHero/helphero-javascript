@@ -82,29 +82,35 @@ export type HelpHero = {
     fn: (
       ev: TourEvent | ChecklistEvent,
       info: TourEventInfo | ChecklistEventInfo
-    ) => void
+    ) => void,
+    context?: any
   ): void;
   on(
     kind: TourEventKind,
-    fn: (ev: TourEvent, info: TourEventInfo) => void
+    fn: (ev: TourEvent, info: TourEventInfo) => void,
+    context?: any
   ): void;
   on(
     kind: ChecklistEventKind,
-    fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void
+    fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void,
+    context?: any
   ): void;
   off(
     fn: (
       ev: TourEvent | ChecklistEvent,
       info: TourEventInfo | ChecklistEventInfo
-    ) => void
+    ) => void,
+    context?: any
   ): void;
   off(
     kind: TourEventKind,
-    fn: (ev: TourEvent, info: TourEventInfo) => void
+    fn: (ev: TourEvent, info: TourEventInfo) => void,
+    context?: any
   ): void;
   off(
     kind: ChecklistEventKind,
-    fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void
+    fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void,
+    context?: any
   ): void;
   openChecklist: () => void;
   closeChecklist: () => void;

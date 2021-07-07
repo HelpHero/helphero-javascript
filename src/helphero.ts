@@ -143,10 +143,10 @@ const methods: (keyof HelpHero)[] = [
   "setOptions",
 
   // deprecated
-  // @ts-ignore
+  // @ts-expect-error
   "showBeacon",
-  // @ts-ignore
-  "hideBeacon"
+  // @ts-expect-error
+  "hideBeacon",
 ];
 
 let initializedAppId: string;
@@ -167,13 +167,13 @@ function init(appId: string): HelpHero {
   }
 
   const tasks: unknown[] = [];
-  // @ts-ignore
-  const instance: AsyncHelpHero & HelpHero = function() {
+  // @ts-expect-error
+  const instance: AsyncHelpHero & HelpHero = function () {
     tasks.push(arguments);
   };
   host.HelpHero = instance;
   instance.q = tasks;
-  methods.forEach(method => {
+  methods.forEach((method) => {
     instance[method] = (...args: any[]) =>
       host.HelpHero.apply(null, [method].concat(args));
   });
@@ -188,6 +188,5 @@ function init(appId: string): HelpHero {
   return instance;
 }
 
-// @ts-ignore
 init["default"] = init;
 export default init;

@@ -69,6 +69,7 @@ export type AdvanceOptions = {
 export type Options = {
   show?: boolean;
   showBeacon?: boolean;
+  navigate?: (url: string) => void;
 };
 
 export type HelpHero = {

@@ -117,6 +117,7 @@ export type HelpHero = {
   closeChecklist: () => void;
   startChecklist: (id: string) => void;
   setOptions: (options: Options) => void;
+  reset: () => void;
 };
 
 interface AsyncHelpHero {

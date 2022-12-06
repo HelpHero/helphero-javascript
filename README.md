@@ -10,7 +10,7 @@
 ## Usage
 
 To use this SDK call the default export with your HelpHero App ID.
-To checkout the [Javascript docs](https://helphero.co/docs/javascript/) for full list of available methods 
+Checkout the [Javascript docs](https://helphero.co/docs/javascript/) for full list of available methods 
 
 ```javascript
 import initHelpHero from 'helphero';

@@ -52,6 +52,22 @@ export type ChecklistEventInfo = {
   item?: ChecklistItem;
 };
 
+type HotspotEventKind = "hotspot_visited" | "hotspot_dismissed";
+
+export type HotspotEvent = {
+  kind: HotspotEventKind;
+  hotspotId: string;
+};
+
+export type Hotspot = {
+  id: string;
+  name: string;
+};
+
+export type HotspotEventInfo = {
+  hotspot: Hotspot;
+};
+
 type Data = {
   [key: string]: boolean | number | string | undefined | null;
 };
@@ -96,6 +112,11 @@ export type HelpHero = {
     fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void,
     context?: any
   ): void;
+  on(
+    kind: HotspotEventKind,
+    fn: (ev: HotspotEvent, info: HotspotEventInfo) => void,
+    context?: any
+  ): void;
   off(
     fn: (
       ev: TourEvent | ChecklistEvent,
@@ -111,6 +132,11 @@ export type HelpHero = {
   off(
     kind: ChecklistEventKind,
     fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void,
+    context?: any
+  ): void;
+  off(
+    kind: HotspotEventKind,
+    fn: (ev: HotspotEvent, info: HotspotEventInfo) => void,
     context?: any
   ): void;
   openChecklist: () => void;

@@ -18,20 +18,20 @@
     "flowgen": "flowgen dist/helphero.d.ts -o dist/helphero.flow.js --no-inexact",
     "prettier-fix": "prettier --write 'src/**/*.ts'",
     "prettier-check": "prettier-check 'src/**/*.ts'",
-    "prepare": "yarn tsc && yarn prettier-check && yarn clean && yarn build && yarn flowgen"
+    "prepare": "npm run tsc && npm run prettier-check && npm run clean && npm run build && npm run flowgen"
   },
   "files": [
     "dist"
   ],
   "dependencies": {},
   "devDependencies": {
-    "del-cli": "^4.0.0",
-    "flowgen": "^1.14.1",
-    "prettier": "^2.3.2",
+    "del-cli": "^5.1.0",
+    "flowgen": "^1.21.0",
+    "prettier": "^3.0.3",
     "prettier-check": "^2.0.0",
-    "rollup": "^2.52.8",
+    "rollup": "^3.29.3",
     "rollup-plugin-cleanup": "^3.2.1",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "typescript": "^4.3.5"
+    "rollup-plugin-typescript2": "^0.35.0",
+    "typescript": "^5.2.2"
   }
 }

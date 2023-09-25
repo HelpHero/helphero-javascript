@@ -69,7 +69,7 @@ export type HotspotEventInfo = {
 };
 
 type Data = {
-  [key: string]: boolean | number | string | undefined | null;
+  [key: string]: boolean | number | string | Date | undefined | null;
 };
 
 export type StartOptions = {
@@ -98,46 +98,46 @@ export type HelpHero = {
   on(
     fn: (
       ev: TourEvent | ChecklistEvent,
-      info: TourEventInfo | ChecklistEventInfo
+      info: TourEventInfo | ChecklistEventInfo,
     ) => void,
-    context?: any
+    context?: any,
   ): void;
   on(
     kind: TourEventKind,
     fn: (ev: TourEvent, info: TourEventInfo) => void,
-    context?: any
+    context?: any,
   ): void;
   on(
     kind: ChecklistEventKind,
     fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void,
-    context?: any
+    context?: any,
   ): void;
   on(
     kind: HotspotEventKind,
     fn: (ev: HotspotEvent, info: HotspotEventInfo) => void,
-    context?: any
+    context?: any,
   ): void;
   off(
     fn: (
       ev: TourEvent | ChecklistEvent,
-      info: TourEventInfo | ChecklistEventInfo
+      info: TourEventInfo | ChecklistEventInfo,
     ) => void,
-    context?: any
+    context?: any,
   ): void;
   off(
     kind: TourEventKind,
     fn: (ev: TourEvent, info: TourEventInfo) => void,
-    context?: any
+    context?: any,
   ): void;
   off(
     kind: ChecklistEventKind,
     fn: (ev: ChecklistEvent, info: ChecklistEventInfo) => void,
-    context?: any
+    context?: any,
   ): void;
   off(
     kind: HotspotEventKind,
     fn: (ev: HotspotEvent, info: HotspotEventInfo) => void,
-    context?: any
+    context?: any,
   ): void;
   openChecklist: () => void;
   closeChecklist: () => void;
@@ -185,7 +185,7 @@ function init(appId: string): HelpHero {
   }
   if (initializedAppId != null && initializedAppId !== appId) {
     throw new Error(
-      `HelpHero does not support initializing multiple Apps on the same page. Trying to initialize with App ID "${appId}" which is different from previously used App ID "${initializedAppId}"`
+      `HelpHero does not support initializing multiple Apps on the same page. Trying to initialize with App ID "${appId}" which is different from previously used App ID "${initializedAppId}"`,
     );
   }
 

@@ -1,7 +1,7 @@
-import typescript from 'rollup-plugin-typescript2';
-import cleanup from 'rollup-plugin-cleanup';
+const typescript = require('rollup-plugin-typescript2');
+const cleanup = require('rollup-plugin-cleanup');
 
-export default {
+module.exports = {
   plugins: [typescript(), cleanup({ extensions: ['ts'] })],
   input: 'src/helphero.ts',
   output: {

@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://helphero.co" target="_blank" align="center">
-    <img src="https://sandbox.helphero.co/images/logo-github2.png" width="280">
+    <img src="https://sandbox.helphero.co/images/logo-github3.png" width="280">
   </a>
   <br />
 </p>

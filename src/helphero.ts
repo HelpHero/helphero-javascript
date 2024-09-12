@@ -169,6 +169,7 @@ const methods: (keyof HelpHero)[] = [
   "closeChecklist",
   "startChecklist",
   "setOptions",
+  "reset",
 
   // deprecated
   // @ts-expect-error
